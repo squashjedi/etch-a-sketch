@@ -1,0 +1,14 @@
+:root {
+  --width: 240;
+}
+
+.grid-container {
+  display: grid;
+  cursor: crosshair;
+  width: 960px;
+  border: 1px solid black;
+}
+
+.grid-item {
+  border: 1px solid black;
+}
