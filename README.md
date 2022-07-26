@@ -1,4 +1,4 @@
 # Etch-A-Sketch
-Part of The Odin Project tasks
+One of the many Odin Project tasks
 
 https://squashjedi.github.io/etch-a-sketch
