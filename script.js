@@ -1,46 +1,49 @@
+const DEFAULT_SIZE = 16
+const DEFAULT_MODE = 'sketch'
 
-let gridSize = 4
-const canvasDimensions = 960
-const button = document.querySelector('button')
-const gridContainer = document.querySelector('.grid-container')
+let currentSize = DEFAULT_SIZE
+let currentMode = DEFAULT_MODE
 
-function gridReset() {
-  gridContainer.innerHTML = ""
-  gridContainer.removeAttribute('style')
-  gridSize = 0
-  console.log('yes')
+const grid = document.querySelector('#grid')
+const btnClear = document.querySelector('#btn-clear')
+const sizeValue = document.querySelector('#size-value')
+const sizeSlider = document.querySelector('#size-slider')
+
+btnClear.onclick = () => reloadGrid()
+sizeSlider.onchange = (e) => resizeGrid(e.target.value)
+
+let mouseDown = false
+grid.onmousedown = () => mouseDown = true
+grid.onmouseup = () => mouseDown = false
+
+function resizeGrid(size) {
+  currentSize = size
+  sizeValue.textContent = `${currentSize} x ${currentSize}`
+  reloadGrid()
 }
 
-button.addEventListener('click', () => {
-  gridReset()
+function reloadGrid() {
+  grid.innerHTML = ''
+  setupGrid(currentSize)
+}
 
-  gridSize = prompt('Grid size?')
+function changeColour(e) {
+  if (e.type === 'mouseover' && !mouseDown) return
+  e.target.style.backgroundColor = '#333'
+}
 
-  if (gridSize > 100) {
-    gridSize = prompt('Grid size?')
+function setupGrid(size) {
+  grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`
+  grid.style.gridTemplateRows = `repeat(${size}, 1fr)`
+
+  for (let i = 0; i < size * size; i++) {
+    const gridElement = document.createElement('div')
+    gridElement.classList.add('grid-element')
+    gridElement.addEventListener('mousedown', changeColour)
+    gridElement.addEventListener('mouseover', changeColour)
+    grid.appendChild(gridElement)
   }
 
-  const gridDimensions = canvasDimensions / gridSize
+}
 
-
-  for (let i = 0; i < gridSize * gridSize; i++) {
-    const div = document.createElement('div')
-    gridContainer.appendChild(div)
-    div.classList.add('grid-item')
-  }
-  // console.log(gridContainer)
-
-
-  gridContainer.style.gridTemplateColumns = `${gridDimensions}px `.repeat(gridSize)
-  gridContainer.style.gridTemplateRows = `${gridDimensions}px `.repeat(gridSize)
-
-
-  const gridItems = document.querySelectorAll('.grid-item')
-
-  const gridItem = gridItems.forEach((gridItem) => {
-    gridItem.addEventListener('mouseover', () => {
-      gridItem.style.backgroundColor = "black"
-    })
-  })
-
-})
+setupGrid(DEFAULT_SIZE)

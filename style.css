@@ -1,14 +1,106 @@
 :root {
-  --width: 240;
+  --primary-dark: #333;
+  --primary-light: #ededed;
+  --secondary-light: #fefefe;
+  --etch-a-sketch-canvas: #ccc;
 }
 
-.grid-container {
+html {
+  height: 100vh;
+}
+
+body {
+  height: 100%;
+  font-family: 'Edu NSW ACT Foundation', cursive;
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+  margin: 0;
+}
+
+h1 {
+  font-size: 3em;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  color: gold;
+}
+
+main {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+}
+
+.grid-border {
+  border-radius: 20px;
+  margin: 20px auto;
+  padding: 20px 80px 0 80px;
+  background-color: #E00;
+  box-shadow: rgba(0, 0, 0, .5) 0px 3px 8px;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  display: block;
+  cursor: pointer;
+  box-sizing: border-box;
+  border: 1px solid #666;
+  border-radius: 5px;
+  background-color: gold;
+  font-size: 1em;
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 20px;
+  font-family: 'Edu NSW ACT Foundation', cursive;
+}
+
+#size-slider {
+  width: 200px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.control-panel {
+  flex: 1;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#grid {
+  margin: 20px auto;
   display: grid;
   cursor: crosshair;
-  width: 960px;
-  border: 1px solid black;
+  width: 400px;
+  height: 400px;
+  box-shadow: inset 0px 0px 5px rgba(0,0,0,0.7);
+  background-color: var(--etch-a-sketch-canvas);
 }
 
-.grid-item {
-  border: 1px solid black;
+.grid-element {
+
+}
+
+.main-content {
+  height: 960px;
 }
